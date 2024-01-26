@@ -1,0 +1,34 @@
+numpy.array: 
+-------------
+cvxopt solver:
+array = [1.9999999826410104, -0.8333324671562614, -0.16666751548474903]
+average computation times 0.0017003536224365235
+maximum computation times 0.004001140594482422
+
+piqp solver:
+array = [1.999999999977689, -0.8333333332117353, -0.1666666667659528]
+average computation times 0.00010008811950683594
+maximum computation times 0.0010008811950683594
+
+proxqp solver:
+array = [1.9996816805453668, -0.8330124654609515, -0.166665394238346]
+average computation times 0.000900101661682129
+maximum computation times 0.0019998550415039062
+
+
+scipy.sparse.csc_matrix: 
+-------------------------
+clarabel solver:
+array = [1.9999999997982638, -0.833333332719844, -0.1666666670784189]
+average computation times 0.0008002281188964844
+maximum computation times 0.0010006427764892578
+
+piqp solver:
+array = [1.999999999977689, -0.8333333332117366, -0.16666666676595152]
+average computation times 0.00020000934600830078
+maximum computation times 0.0010001659393310547
+
+proxqp solver:
+array = [1.9996951237339673, -0.833026010664865, -0.16666544500115735]
+average computation times 0.0011002779006958007
+maximum computation times 0.0020003318786621094
