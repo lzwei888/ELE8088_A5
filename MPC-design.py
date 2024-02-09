@@ -116,8 +116,8 @@ Az3 = np.hstack((np.zeros((4, 10)), Azz, np.zeros((4, 5))))
 Az4 = np.hstack((np.zeros((4, 15)), Azz))
 
 Az = np.vstack((Az1, Az2, Az3, Az4))
-
-bz = np.zeros((16, 1))
+# initial state
+bz = np.vstack((np.zeros((12, 1)), np.array([[-0.2], [0.1], [0.1], [-0.1]])))
 
 zmin = np.array([[-0.2007], [-0.2443], [-0.6109], [-0.4014], [-0.4189]])
 zmax = np.array([[0.2007], [0.2443], [0.6109], [0.4014], [0.4712]])
@@ -141,10 +141,16 @@ P1 = np.hstack((np.eye(5), np.zeros((5, 19))))
 P2 = np.hstack((np.zeros((5, 5)), np.eye(5), np.zeros((5, 14))))
 P3 = np.hstack((np.zeros((5, 10)), np.eye(5), np.zeros((5, 9))))
 P4 = np.hstack((np.zeros((5, 15)), np.eye(5), np.zeros((5, 4))))
-P5 = np.hstack((np.zeros((5, 20)), Pf))
+P5 = np.hstack((np.zeros((4, 20)), Pf))
 P = np.vstack((P1, P2, P3, P4, P5))
 
 q = np.zeros((24, 1))
+
+start=time.time()
+x = solve_qp(P, q, G, h, Az, bz, lb=z_min, ub=z_max, solver="proxqp")
+end=time.time()
+print(f"QP solution: {x = }")
+print("time: ", start-end)
 
 # data_df = pd.DataFrame(Az)
 # writer = pd.ExcelWriter('A.xlsx')  # 关键2，创建名称为hhh的excel表格
