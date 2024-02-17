@@ -1,16 +1,11 @@
 import time
 import pandas as pd
 import control as ctrl
-import polytope as pc
 import numpy as np
 import matplotlib.pyplot as plt
-import scipy.linalg as spla
 from qpsolvers import solve_qp
 
-'''
-The following code and variables are used to create matrix G h A b P q, it s not the optimal code 
-Q is I(4) and R is 1 in the code, but I think we need to change it according to the solution 
-'''
+
 A = np.array([[0.983500, 2.782, 0],
               [-0.0006821, 0.978, 0],
               [-0.0009730, 2.804, 1]])
@@ -127,6 +122,7 @@ q_rate = np.append(column_arr[1], x2[1]).T
 theta = np.append(column_arr[2], x2[2]).T
 u = column_arr[3].T
 
+# plot
 x_axis_data = [i for i in range(0, N + 1)]  # x
 plt.title("N = 100")
 plt.plot(x_axis_data, alpha, 'b-', alpha=0.5, linewidth=1, label=r'$\alpha$')

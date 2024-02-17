@@ -8,18 +8,15 @@ import scipy.linalg as spla
 from qpsolvers import solve_qp
 
 # gamma is added to system dynamics
-A = np.array([[0.983500, 2.782, 0, 0],
-              [-0.0006821, 0.978, 0, 0],
-              [-0.0009730, 2.804, 1, 0],
-              [-1, 0, 1, -1]])
+A = np.array([[0.983500, 2.782, 0],
+              [-0.0006821, 0.978, 0],
+              [-0.0009730, 2.804, 1]])
 B = np.array([[0.01293],
               [0.00100],
-              [0.001425],
-              [0]])
+              [0.001425]])
 
-Q = np.eye(4)
+Q = np.eye(3)
 R = np.array([1])
-Pf, _, K = ctrl.dare(A, B, Q, R)
 
 # sampling time of 0.05 seconds
 dt = 0.05
@@ -30,14 +27,14 @@ K = -K
 Acl = A + B @ K
 
 # set lb and ub, change deg to rad, gamma is added
-x_min = np.array([[-0.2007], [-0.2443], [-0.6109], [-0.4014]])
+x_min = np.array([[-0.2007], [-0.2443], [-0.6109]])
 x_max = -x_min
 u_min = np.array([-0.4189])
 u_max = np.array([0.4712])
 
 
 # Define H_x, b_x, H_u and b_u
-H_x = np.vstack((np.eye(4), -np.eye(4)))
+H_x = np.vstack((np.eye(3), -np.eye(3)))
 b_x = np.vstack((x_max, -x_min))
 X = pc.Polytope(H_x, b_x)
 H_u = np.array([[1], [-1]])
