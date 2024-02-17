@@ -5,7 +5,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from qpsolvers import solve_qp
 
-
 A = np.array([[0.983500, 2.782, 0],
               [-0.0006821, 0.978, 0],
               [-0.0009730, 2.804, 1]])
@@ -13,11 +12,11 @@ B = np.array([[0.01293],
               [0.00100],
               [0.001425]])
 
-Q = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
+Q = np.array([[3000, 0, 0], [0, 1, 0], [0, 0, 1500]])
 R = np.array([1])
 Pf, _, K = ctrl.dare(A, B, Q, R)  # P_f
 
-N = 100
+N = 200
 
 # set P
 QR = np.vstack((np.hstack((Q, np.zeros((3, 1)))), np.hstack((np.array([0, 0, 0]), R))))
@@ -90,16 +89,15 @@ for i in range(N - 1):
 z_min = np.vstack((z_min, np.array([[-0.2007], [-0.2443], [-0.6109]])))
 z_max = np.vstack((z_max, np.array([[0.2007], [0.2443], [0.6109]])))
 
-
-# result
-print("size: ")
-print("P: ", P.shape)
-print("q: ", q.shape)
-print("G: ", G.shape)
-print("h: ", h.shape)
-print("A: ", Az.shape)
-print("b: ", b.shape)
-print("z_min: ", z_min.shape)
+## result
+# print("size: ")
+# print("P: ", P.shape)
+# print("q: ", q.shape)
+# print("G: ", G.shape)
+# print("h: ", h.shape)
+# print("A: ", Az.shape)
+# print("b: ", b.shape)
+# print("z_min: ", z_min.shape)
 # solve and record time
 start = time.time()
 x = solve_qp(P, q, G, h, Az, b, lb=z_min, ub=z_max, solver="proxqp")  # lb=z_min, ub=z_max,
@@ -124,14 +122,14 @@ u = column_arr[3].T
 
 # plot
 x_axis_data = [i for i in range(0, N + 1)]  # x
-plt.title("N = 100")
+title = f'N = {N} , Q: {Q[0, 0]}, {Q[1, 1]}, {Q[2, 2]}'
+plt.title(title)
 plt.plot(x_axis_data, alpha, 'b-', alpha=0.5, linewidth=1, label=r'$\alpha$')
 plt.plot(x_axis_data, q_rate, 'r-', alpha=0.5, linewidth=1, label="q")
 plt.plot(x_axis_data, theta, 'g-', alpha=0.5, linewidth=1, label=r'$\theta$')
 # plt.plot(x_axis_data.pop(), u, 'y-', alpha=0.5, linewidth=1, label=r'$\delta')
 plt.legend()
 plt.show()
-
 
 #
 # data_df = pd.DataFrame(G)

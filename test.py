@@ -20,5 +20,3 @@ for i in range(N - 1):
 
 z_min = np.vstack((z_min, np.array([[-0.2007], [-0.2443], [-0.6109]])))
 z_max = np.vstack((z_max, np.array([[0.2007], [0.2443], [0.6109]])))
-
-
