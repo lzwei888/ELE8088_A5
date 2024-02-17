@@ -82,5 +82,19 @@ b_1_before = np.concatenate((b_x, b_u, np.reshape(b_infty, (-1, 1))))
 S_1_before = pc.Polytope(H_1_before, b_1_before)
 X_1 = S_1_before.project([1, 2])
 
+X_1_extreme_points = pc.extreme(X_1)
+extreme_points = pc.extreme(mis)
+# ax = plt.figure().add_subplot(projection='3d')
+# ax.scatter(extreme_points[:, 0], extreme_points[:, 1], zs=extreme_points[:, 2])
+# ax.set_xlim(-0.5, 0.5)
+# ax.set_ylim(-0.5, 0.5)
+# ax.set_zlim(-0.3, 0.3)
+# ax.set_xlabel('$x_1$')
+# ax.set_ylabel('$x_2$')
+# ax.set_zlabel('$x_3$')
+# plt.show()
 
-print(H_infty, b_infty)
+
+
+np.set_printoptions(threshold=np.inf)
+print(extreme_points)
