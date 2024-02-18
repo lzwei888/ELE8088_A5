@@ -92,6 +92,5 @@ extreme_points = pc.extreme(mis)
 # plt.show()
 
 
-
-np.set_printoptions(threshold=np.inf)
-print(extreme_points)
+# np.set_printoptions(threshold=np.inf)
+# print(extreme_points)
