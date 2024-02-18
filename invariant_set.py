@@ -1,11 +1,7 @@
-import time
-import pandas as pd
 import control as ctrl
 import polytope as pc
 import numpy as np
-import matplotlib.pyplot as plt
 import scipy.linalg as spla
-from qpsolvers import solve_qp
 
 # gamma is added to system dynamics
 A = np.array([[0.983500, 2.782, 0],
