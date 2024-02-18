@@ -155,8 +155,8 @@ def qpsolver(Q_r, N, init, solver, plot):
 
 
 # qpsolvers
-Q_r = [1000, 1100, 1500]  # select ratio of Q
-N = 300  # select N
+Q_r = [5000, 1100, 1500]  # select ratio of Q
+N = 500  # select N
 init = np.array([[0.2007], [-0.01174], [0.43834]])  # set initial state
 solver = "piqp"  # select solvers
 plot = True  # show plot?
