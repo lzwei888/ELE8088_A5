@@ -107,7 +107,7 @@ def qpsolver(Q_r, N, init, solver, plot):
     x = solve_qp(P, q, G, h, Az, b, lb=z_min, ub=z_max, solver=solver)  # lb=z_min, ub=z_max,
     end = time.time()
     t = end - start
-    print("\ninitial state: \n", init.T, ".T")
+    print("\ninitial state: \n", init.T[0], ".T")
     print(f"\nQP solution: \n", x)
     print("\ntime: ", t)
 
@@ -125,30 +125,32 @@ def qpsolver(Q_r, N, init, solver, plot):
     u = column_arr[3].T
 
     # plot
-    x_axis_data = [i for i in range(0, N + 1)]  # x
+    x_axis_data = np.arange(0, N * 0.05 + 0.05, 0.05)  # [i for i in range(0, N + 1)]
     title = f'N = {N} , Q: {Q[0, 0]}, {Q[1, 1]}, {Q[2, 2]}'
-    plt.title(title)
-    plt.plot(x_axis_data, alpha, 'b-', alpha=0.5, linewidth=1, label=r'$\alpha$')
-    plt.plot(x_axis_data, q_rate, 'r-', alpha=0.5, linewidth=1, label="q")
-    plt.plot(x_axis_data, theta, 'g-', alpha=0.5, linewidth=1, label=r'$\theta$')
+
+    plt.subplot(3, 1, 1)
+    plt.plot(x_axis_data, np.degrees(alpha), 'b-', alpha=0.5, linewidth=1, label=r'$\alpha$')
+    plt.ylabel("degree")
+    plt.legend()
+
+    plt.subplot(3, 1, 2)
+    plt.plot(x_axis_data, np.degrees(q_rate), 'r-', alpha=0.5, linewidth=1, label="q")
+    plt.ylabel("degree")
+    plt.legend()
+
+    plt.subplot(3, 1, 3)
+    plt.plot(x_axis_data, np.degrees(theta), 'g-', alpha=0.5, linewidth=1, label=r'$\theta$')
     # plt.plot(x_axis_data.pop(), u, 'y-', alpha=0.5, linewidth=1, label=r'$\delta')
     plt.legend()
+    plt.xlabel("Time (s)")
+    plt.ylabel("degree")
+    plt.suptitle(title)
     if plot:
         plt.show()
     return t
 
-
-#
-# data_df = pd.DataFrame(G)
-# writer = pd.ExcelWriter('G.xlsx')
-# data_df.to_excel(writer, 'page_1', float_format='%.5f')
-# writer.save()
-
-# df = pd.read_excel('P.xlsx', 'page_1', header=1)
-# P = np.array(df)
-# print(P)
-
-Q_r = [3000, 1, 1500]  # select ratio of Q
+# qpsolvers
+Q_r = [1000, 1100, 1500]  # select ratio of Q
 N = 300  # select N
 init = np.array([[0.2007], [-0.01174], [0.43834]])  # set initial state
 solver = "piqp"  # select solvers
