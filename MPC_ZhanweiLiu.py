@@ -124,6 +124,10 @@ def qpsolver(Q_r, N, init, solver, plot):
     theta = np.append(column_arr[2], x2[2]).T
     u = column_arr[3].T
 
+    # ux = np.arange(0, N * 0.05, 0.05)
+    # plt.plot(ux, u, 'r')
+    # plt.show()
+
     # plot
     x_axis_data = np.arange(0, N * 0.05 + 0.05, 0.05)  # [i for i in range(0, N + 1)]
     title = f'N = {N} , Q: {Q[0, 0]}, {Q[1, 1]}, {Q[2, 2]}'
@@ -148,6 +152,7 @@ def qpsolver(Q_r, N, init, solver, plot):
     if plot:
         plt.show()
     return t
+
 
 # qpsolvers
 Q_r = [1000, 1100, 1500]  # select ratio of Q
