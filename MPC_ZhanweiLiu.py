@@ -171,9 +171,8 @@ qpsolver(Q_r, N, init, solver, plot)  # call qpsolver function
 
 # # average time and maximum time
 # T = []
-# for i in range(10):
+# for i in range(50):
 #     t = qpsolver(Q_r, N, init, solver, plot)
 #     T.append(t)
-#
 # print("average: ", np.mean(T))
 # print("maximum: ", max(T))
