@@ -165,6 +165,15 @@ qpsolver(Q_r, N, init, solver, plot)  # call qpsolver function
 # # plot time vs N
 # N, T = [4, 10, 30, 50, 100, 200, 300, 500], []
 # for i in N:
-#     t = qpsolver(Q_r, i, init, solver, plot)
+#     t = qpsolver(Q_r, i, init, solver, plot)  # call qpsolver function
 #     T.append(t)
 # print(T)
+
+# # average time and maximum time
+# T = []
+# for i in range(10):
+#     t = qpsolver(Q_r, N, init, solver, plot)
+#     T.append(t)
+#
+# print("average: ", np.mean(T))
+# print("maximum: ", max(T))
